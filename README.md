@@ -1,5 +1,5 @@
 # Caffe
-This is a modified version of caffe to implement roi-alignment pooling which proposed in the paper of Mask-RCNN(https://arxiv.org/abs/1703.06870),we alse added some customized layer such as BN layer and Butterworth layer to boost the compatibility.
+This is a modified version of caffe to implement roi-alignment pooling which proposed in the paper of Mask-RCNN(https://arxiv.org/abs/1703.06870).We alse added some customized layer such as BN layer and Butterworth layer to boost the compatibility.
 [![Build Status](https://travis-ci.org/BVLC/caffe.svg?branch=master)](https://travis-ci.org/BVLC/caffe)
 [![License](https://img.shields.io/badge/license-BSD-blue.svg)](LICENSE)
 
