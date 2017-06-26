@@ -128,13 +128,7 @@ void ROIAlignLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
           		wend = min(max(wend + roi_start_w, (Dtype)0), static_cast<Dtype>(width_));
 
           		bool is_empty = (hend <= hstart) || (wend <= wstart);
-
           		const int pool_index = ph * pooled_width_ + pw;
-          		if (is_empty) {
-            		top_data[pool_index] = 0;
-            		max_idx_x[pool_index] = -1;
-          			max_idx_y[pool_index] = -1;
-          		}
           		Dtype maxval = -1;
           		Dtype maxidx_h = -1;
           		Dtype maxidx_w = -1;
@@ -147,7 +141,7 @@ void ROIAlignLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
           			}
           		}
           		if (maxidx_h == -1 && maxidx_w == -1) maxval = 0;
-              	top_data[pool_index] = is_empty ? 0 : maxval;
+              top_data[pool_index] = is_empty ? 0 : maxval;
           		max_idx_x[pool_index] = is_empty ? -1 : maxidx_h;
           		max_idx_y[pool_index] = is_empty ? -1 : maxidx_w;
         	  } 

@@ -103,7 +103,7 @@ __global__ void PSROIAlignPoolingForward(
       Dtype sum = 0,value;
       for (int i = 0;i < 2; ++i){
         for(int j = 0;j < 2; ++j){
-          value = 0;
+          	value = 0;
             Dtype h = hstart + i * bin_size_h;
             Dtype w = wstart + j * bin_size_w;
             bilinear_interpolate(batch_data,height,width,h,w,value);

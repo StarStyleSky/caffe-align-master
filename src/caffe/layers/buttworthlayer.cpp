@@ -63,6 +63,18 @@ namespace caffe{
 			
 			for(idx = 0;idx<count;++idx)
 				top_data[idx] = Dtype(1.) - Dtype(1.)/forward_buffer.cpu_data()[idx];
+			maxval = top_data[0];
+			minval = top_data[0];
+			for(idx = 1;idx < count;++idx){
+				if(maxval<top_data[idx]){
+					maxval = top_data[idx];
+				}
+				if(minval>top_data[idx]){
+					minval = top_data[idx];
+				}
+			}
+			for(idx = 0;idx < count; ++idx)
+				top_data[idx] = (top_data[idx]-minval)/(maxval-minval + eps_);
 			top_data += top[0]->offset(n);
 		}
 

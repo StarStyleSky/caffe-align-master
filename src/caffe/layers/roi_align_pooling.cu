@@ -106,8 +106,8 @@ __global__ void ROIAlignForward(const int nthreads, const Dtype* bottom_data,
     for(int i = 0;i<2;++i){
       for(int j = 0;j<2;++j){
 
-        Dtype ih = roi_start_h + static_cast<Dtype>(ph+i) * bin_size_h;
-        Dtype iw = roi_start_w + static_cast<Dtype>(pw+j) * bin_size_w;
+        Dtype ih = hstart + static_cast<Dtype>(ph+i) * bin_size_h;
+        Dtype iw = wstart + static_cast<Dtype>(pw+j) * bin_size_w;
         bilinear_interpolate(bottom_data, height, width, ih, iw, maxval, maxidx_h, maxidx_w);
 
       }

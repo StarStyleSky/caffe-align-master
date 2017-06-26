@@ -79,7 +79,8 @@ void MaskResizeLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom, con
   Dtype* top_data = top[0]->mutable_gpu_data();
   int count = top[0]->count();
   MaskResizeForward<Dtype> <<<CAFFE_GET_BLOCKS(count), CAFFE_CUDA_NUM_THREADS>>>
-  (count, bottom_data, output_width_, output_height_, output_channels_, input_width_, input_height_, input_channels_, top_data);
+  (count, bottom_data, output_width_, output_height_, output_channels_, 
+  input_width_, input_height_, input_channels_, top_data);
   CUDA_POST_KERNEL_CHECK;
 }
 
@@ -171,7 +172,8 @@ void MaskResizeLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
     caffe_gpu_set(bottom[0]->count(), Dtype(0.), bottom_diff);
     if(propagate_down[0]){
       MaskResizeBackward<Dtype> << <CAFFE_GET_BLOCKS(count), CAFFE_CUDA_NUM_THREADS >> >
-      (count, top_diff, input_channels_, input_height_, input_width_, output_height_,output_width_, bottom_diff);
+      (count, top_diff, input_channels_, input_height_, 
+      input_width_, output_height_,output_width_, bottom_diff);
     }
     CUDA_POST_KERNEL_CHECK;
 }
